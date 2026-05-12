@@ -107,7 +107,11 @@ At the end of each day, Galadriel runs a scheduled ingestion pass that pulls tha
 
 For cloud-based services — Slack, Gmail, Google Calendar, Google Docs, GitHub, and others — ingestion is handled through [Composio](https://composio.dev), which provides a unified set of pre-built tool integrations. Each tool call fetches raw data (messages, edits, events, commits) for the target day, and Galadriel's normalization layer maps that output into the common event format.
 
-For sources not covered by Composio — such as Claude Code, Strava, Apple Health, or other tools — Galadriel uses either a custom-built API integration or [interface.ai](https://interface.ai)-powered OCR. OCR is a niche fallback reserved for cases where no API exists: while the app is in focus, Galadriel captures recurring screenshots every few minutes and extracts visible content into timeline events. Every source is either a Composio integration, a custom API, or an OCR workaround.
+For sources not covered by Composio — such as anthropic chat contents, Apple Health, or other tools — Galadriel uses either a custom-built API integration or [interface.ai](https://interface.ai)-powered OCR. OCR is a niche fallback reserved for cases where no API exists: while the app is in focus, Galadriel captures recurring screenshots every few minutes and extracts visible content into timeline events. Every source is either a Composio integration, a custom API, or an OCR workaround.
+
+The OCR could also be used for specific Apps where the user wants more detailed information on. If a user spends 90% of their day in google docs this could potentially be turned on for google docs.
+
+The case with anthropic chat contents was that they can be difficult to access through an API so the computer would just detect when that is the active tabe then use OCR to determine approx when and what the content of the messages and conversations were.
 
 ### Priority launch sources
 
