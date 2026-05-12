@@ -74,14 +74,7 @@ Each insight should:
 - include a confidence score and sample size
 - suggest a small behavioral experiment when appropriate
 
-Users can mark insights as:
-
-- resonant
-- off-base
-- already knew
-- want more like this
-
-That feedback shapes future detection and helps Galadriel learn what kinds of reflections are useful.
+Users can rate each insight — resonant, off-base, already knew, or want more of this. That feedback shapes future detection and helps Galadriel learn what kinds of reflections are useful.
 
 ### 4. Dashboard
 
@@ -108,46 +101,21 @@ A normalized event includes:
 
 The product starts to feel magical when roughly five high-signal sources are connected, because that is when cross-source patterns become possible.
 
-Priority launch adapters include:
+### Ingestion model
+
+At the end of each day, Galadriel runs a scheduled ingestion pass that pulls that day's activity across all connected sources and normalizes it into the timeline. This is deterministic and reproducible: the same day can be re-ingested if the schema changes or a new source is added.
+
+For cloud-based services — Slack, Gmail, Google Calendar, Google Docs, GitHub, and others — ingestion is handled through [Composio](https://composio.dev), which provides a unified set of pre-built tool integrations. Each tool call fetches raw data (messages, edits, events, commits) for the target day, and Galadriel's normalization layer maps that output into the common event format.
+
+For sources not covered by Composio — such as Claude Code, Strava, Apple Health, or other tools — Galadriel uses either a custom-built API integration or [interface.ai](https://interface.ai)-powered OCR. OCR is a niche fallback reserved for cases where no API exists: while the app is in focus, Galadriel captures recurring screenshots every few minutes and extracts visible content into timeline events. Every source is either a Composio integration, a custom API, or an OCR workaround.
+
+### Priority launch sources
 
 - Google Calendar
 - Gmail
-- Claude conversation exports
+- Slack
 - Google Docs revision history
-- iMessage or Slack exports
 - GitHub
-- Spotify
-- Apple Health or wearable data
-- Obsidian, Day One, or another journal source
-- desktop application focus and screen-time data
-
-Adding new adapters should be a small, clear contribution path. Community adapters could support tools such as Strava, Things, Linear, bank transactions, browser history, or any other data source a user explicitly chooses to connect.
-
----
-
-## Application activity and local computer context
-
-Galadriel can also use local computer activity as another signal, when the user opts in.
-
-On many operating systems it is possible to determine which application is currently focused, such as Discord, a browser, an editor, a terminal, or a music app. Depending on platform permissions, Galadriel can turn that into timeline events like:
-
-- “Discord focused for 18 minutes”
-- “VS Code active during a late-night coding session”
-- “Calendar opened repeatedly before a difficult meeting”
-- “Browser research followed by a Claude conversation and then a long email draft”
-
-This should be captured as coarse activity windows rather than invasive screen recording. The goal is to understand rhythms and context, not to reconstruct private behavior at unnecessary resolution.
-
-Possible sources include:
-
-- operating-system screen time APIs
-- accessibility APIs, with explicit permission
-- active-window tracking
-- browser history exports
-- app usage summaries from system settings
-- local-only event collectors
-
-Because this data is sensitive, the default should be local-first, transparent, and user-controlled.
 
 ---
 
@@ -217,7 +185,7 @@ The model drives analysis by deciding which tools to call, what parameters to pa
 
 This means insights can be genuinely exploratory. The model might notice an unexpected result from one tool and use that as the basis for a follow-up call — the same way a thoughtful person would pull on a thread.
 
-The model also handles signals that deterministic rules cannot easily capture: tone, conflict style, intent, emotional valence, and thematic similarity across sources. These are treated as first-class inputs that inform which tools to call and how to interpret the results.
+The model also handles signals that deterministic tools cannot easily capture — tone, emotional valence, thematic similarity — reading directly from the content summaries in normalized events to inform which tools to call and how to interpret their outputs.
 
 ### 2. Renderer
 
@@ -282,9 +250,9 @@ Insights include sample size, confidence, and uncertainty. If the system does no
 
 Patterns are tracked as trends, not snapshots. The interesting moments are often the drifts, reversals, and changes.
 
-### Local-first
+### Local-first where possible
 
-Behavioral data is among the most sensitive data a person owns. The default installation should run on the user’s own machine against their own data. Cloud inference should be opt-in and explicit.
+Behavioral data is among the most sensitive data a person owns. Processed timeline events and all derived insights are stored locally on the user’s machine. Fetching data from cloud services via Composio is an explicit, user-authorized action — Galadriel does not store credentials beyond what OAuth requires, and no data is sent to third-party infrastructure beyond the source APIs themselves. LLM inference should be opt-in and explicit.
 
 ### A mirror, not an oracle
 
@@ -317,7 +285,8 @@ Now they do.
 Galadriel is currently a project specification and early open-source foundation. The intended architecture emphasizes:
 
 - local-first data storage
-- adapter-based ingestion
+- Composio-backed daily ingestion for cloud sources
+- local collectors for on-device sources
 - normalized timeline events
 - composable analysis tools the LLM calls dynamically
 - LLM-driven orchestration over analysis tools
@@ -332,7 +301,6 @@ Contributions should preserve the core promise: **reflect real behavior with evi
 
 Good first contribution areas include:
 
-- new data-source adapters
 - analysis tool implementations
 - local activity collectors
 - timeline normalization utilities
@@ -341,7 +309,7 @@ Good first contribution areas include:
 - dashboard visualizations
 - documentation and examples
 
-If you add an analysis tool or adapter, make sure it is explainable, inspectable, and respectful of user consent.
+If you add an analysis tool or integration, make sure it is explainable, inspectable, and respectful of user consent.
 
 ---
 
