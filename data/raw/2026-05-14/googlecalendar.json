@@ -1,0 +1,42 @@
+{
+  "GOOGLECALENDAR_EVENTS_LIST_ALL_CALENDARS": {
+    "successful": true,
+    "data": {
+      "calendars_queried": [
+        {
+          "id": "julianloewenherz@gmail.com",
+          "summary": "julianloewenherz@gmail.com"
+        },
+        {
+          "id": "en.usa#holiday@group.v.calendar.google.com",
+          "summary": "Holidays in United States"
+        }
+      ],
+      "composio_execution_message": "Minimal response: returning only summary_view (event titles, times, calendars). Full events array omitted. Use response_detail='full' to include complete event details with attendees, descriptions, and conference data.",
+      "errors_by_calendar": {},
+      "events": [],
+      "summary_view": [
+        {
+          "calendar": "julianloewenherz@gmail.com",
+          "display_url": "https://www.google.com/calendar/event?eid=NDU5NXZpaTIwNGN0b3FiMHM1cnZoZnFnOGMganVsaWFubG9ld2VuaGVyekBt",
+          "end": "2026-05-14T11:00:00-07:00",
+          "event_id": "4595vii204ctoqb0s5rvhfqg8c",
+          "is_all_day": false,
+          "start": "2026-05-14T10:30:00-07:00",
+          "title": "Julian Loewenherz and Olivia Habart"
+        },
+        {
+          "calendar": "julianloewenherz@gmail.com",
+          "display_url": "https://www.google.com/calendar/event?eid=MWtxMnIyOGJpMzlxNmViNHMzbW9nbmZnYXJfMjAyNjA1MTVUMDAwMDAwWiBqdWxpYW5sb2V3ZW5oZXJ6QG0",
+          "end": "2026-05-14T18:00:00-07:00",
+          "event_id": "1kq2r28bi39q6eb4s3mognfgar_20260515T000000Z",
+          "is_all_day": false,
+          "start": "2026-05-14T17:00:00-07:00",
+          "title": "Cansbridge Scholars: (Un)structured playtime!"
+        }
+      ]
+    },
+    "error": null,
+    "logId": "log__E3KBa-WnuDN"
+  }
+}

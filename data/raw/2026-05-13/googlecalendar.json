@@ -1,0 +1,51 @@
+{
+  "GOOGLECALENDAR_EVENTS_LIST_ALL_CALENDARS": {
+    "successful": true,
+    "data": {
+      "calendars_queried": [
+        {
+          "id": "julianloewenherz@gmail.com",
+          "summary": "julianloewenherz@gmail.com"
+        },
+        {
+          "id": "en.usa#holiday@group.v.calendar.google.com",
+          "summary": "Holidays in United States"
+        }
+      ],
+      "composio_execution_message": "Minimal response: returning only summary_view (event titles, times, calendars). Full events array omitted. Use response_detail='full' to include complete event details with attendees, descriptions, and conference data.",
+      "errors_by_calendar": {},
+      "events": [],
+      "summary_view": [
+        {
+          "calendar": "julianloewenherz@gmail.com",
+          "display_url": "https://www.google.com/calendar/event?eid=NTh2b3NubmcwZ25pam40ZWk2bXVoOHZsM3AganVsaWFubG9ld2VuaGVyekBt",
+          "end": "2026-05-13T10:30:00-07:00",
+          "event_id": "58vosnng0gnijn4ei6muh8vl3p",
+          "is_all_day": false,
+          "start": "2026-05-13T09:30:00-07:00",
+          "title": "kidz dental haven checkup appointment"
+        },
+        {
+          "calendar": "julianloewenherz@gmail.com",
+          "display_url": "https://www.google.com/calendar/event?eid=djNvdWQwMW1zdDM5cWRvdWMwZ3I4MzNlbGMganVsaWFubG9ld2VuaGVyekBt",
+          "end": "2026-05-13T13:30:00-07:00",
+          "event_id": "v3oud01mst39qdouc0gr833elc",
+          "is_all_day": false,
+          "start": "2026-05-13T13:00:00-07:00",
+          "title": "30 min with Xinghu (Julian Loewenherz)"
+        },
+        {
+          "calendar": "julianloewenherz@gmail.com",
+          "display_url": "https://www.google.com/calendar/event?eid=M2JnMjhzOWE5aHE5N3A3aDdxbjhsM2lyaDgganVsaWFubG9ld2VuaGVyekBt",
+          "end": "2026-05-13T18:30:00-07:00",
+          "event_id": "3bg28s9a9hq97p7h7qn8l3irh8",
+          "is_all_day": false,
+          "start": "2026-05-13T15:30:00-07:00",
+          "title": "building galadriel"
+        }
+      ]
+    },
+    "error": null,
+    "logId": "log_vE0uwbR_GRgg"
+  }
+}

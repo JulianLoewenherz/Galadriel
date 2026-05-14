@@ -1,0 +1,33 @@
+{
+  "GMAIL_FETCH_EMAILS": {
+    "successful": true,
+    "data": {
+      "messages": [
+        {
+          "attachmentList": [],
+          "display_url": "https://mail.google.com/mail/u/0/#inbox/19e23e799ae5ae36",
+          "labelIds": [
+            "UNREAD",
+            "CATEGORY_UPDATES",
+            "INBOX"
+          ],
+          "messageId": "19e23e799ae5ae36",
+          "messageText": "[image: Google]\r\nYou allowed Composio access to some of your Google Account data\r\n\r\n\r\njulianloewenherz@gmail.com\r\n\r\nIf you didn’t allow Composio access to some of your Google Account data,\r\nsomeone else may be trying to access your Google Account data.\r\n\r\nTake a moment now to check your account activity and secure your account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=julianloewenherz@gmail.com&continue=https://myaccount.google.com/alert/nt/1778718839000?rfn%3D127%26rfnc%3D1%26eid%3D-8775704092390306904%26et%3D0>\r\nTo make changes at any time to the access that Composio has to your data,\r\ngo to your Google Account\r\n<https://accounts.google.com/AccountChooser?Email=julianloewenherz@gmail.com&continue=https://myaccount.google.com/connections/overview/AcBx0o4Q41WKTdIhUQCLxA5B8v5xhkKg1n7i7c9_j2GxR0JW0tdtJZcsMTzxiVEPVi0kDM6YNPOLdqHuX8FDSU7Eb4Q?utm_source%3Dsec_alert%26utm_medium%3Demail_notification%26force_all%3Dtrue>\r\nYou can also see security activity at\r\nhttps://myaccount.google.com/notifications\r\nYou received this email to let you know about important changes to your\r\nGoogle Account and services.\r\n© 2026 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA\r\n",
+          "messageTimestamp": "2026-05-14T00:33:59Z",
+          "preview": {
+            "body": "You allowed Composio access to some of your Google Account data julianloewenherz@gmail.com If you didn&#39;t allow Composio access to some of your Google Account data, someone else may be trying to",
+            "subject": "Security alert"
+          },
+          "sender": "Google <no-reply@accounts.google.com>",
+          "subject": "Security alert",
+          "threadId": "19e23e799ae5ae36",
+          "to": "julianloewenherz@gmail.com"
+        }
+      ],
+      "nextPageToken": "",
+      "resultSizeEstimate": 1
+    },
+    "error": null,
+    "logId": "log_oTNDiW5orlTV"
+  }
+}

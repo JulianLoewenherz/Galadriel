@@ -1,0 +1,29 @@
+{
+  "GOOGLEDRIVE_FIND_FILE": {
+    "successful": true,
+    "data": {
+      "files": [
+        {
+          "createdTime": "2026-05-13T00:58:38.550Z",
+          "display_url": "https://docs.google.com/document/d/1iEtPXyFFiHIW0nhPhRqfJm6E_cCTia0NbPYgtcLEHDY/edit?usp=drivesdk",
+          "id": "1iEtPXyFFiHIW0nhPhRqfJm6E_cCTia0NbPYgtcLEHDY",
+          "link_label": "View Document in Google Docs",
+          "mimeType": "application/vnd.google-apps.document",
+          "modifiedTime": "2026-05-13T21:32:56.612Z",
+          "name": "Euka Prep",
+          "parents": [
+            "0AM5rJROr2AeVUk9PVA"
+          ],
+          "size": "18020",
+          "starred": false,
+          "trashed": false,
+          "webViewLink": "https://docs.google.com/document/d/1iEtPXyFFiHIW0nhPhRqfJm6E_cCTia0NbPYgtcLEHDY/edit?usp=drivesdk"
+        }
+      ],
+      "incompleteSearch": false,
+      "kind": "drive#fileList"
+    },
+    "error": null,
+    "logId": "log_vRHTPRaWsuja"
+  }
+}
