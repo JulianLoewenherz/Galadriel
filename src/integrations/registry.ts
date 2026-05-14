@@ -23,6 +23,12 @@ export type Integration = {
   extract: (raw: Record<string, unknown>) => Omit<TimelineItem, "source">[]
 }
 
+// ── User config ───────────────────────────────────────────────────────────────
+// Fill in handles for integrations that need them to fetch your content.
+export const USER_HANDLES = {
+  twitter: "YOUR_TWITTER_HANDLE",  // e.g. "janedoe" — without the @
+}
+
 // ── Date helpers ──────────────────────────────────────────────────────────────
 
 function dayBounds(dateISO: string): { start: string; end: string } {
@@ -131,7 +137,7 @@ export const integrations: Integration[] = [
       return [{
         slug: "GMAIL_FETCH_EMAILS",
         params: {
-          query: `after:${startSec} before:${endSec}`,
+          query: `after:${startSec} before:${endSec} category:primary`,
           user_id: "me",
           max_results: 100,
           include_payload: false,
@@ -325,6 +331,69 @@ export const integrations: Integration[] = [
         url: (get(a, "display_url") ?? "") as string,
         raw: a,
       })).filter((x) => x.timestamp)
+    },
+  },
+
+  // ── Social ───────────────────────────────────────────────────────────────
+
+  {
+    toolkit: "twitter",
+    displayName: "Twitter",
+    fetch(dateISO) {
+      const { start, end } = dayBounds(dateISO)
+      return [{
+        slug: "TWITTER_FULL_ARCHIVE_SEARCH",
+        params: {
+          query: `from:${USER_HANDLES.twitter} -is:retweet`,
+          start_time: start,
+          end_time: end,
+          max_results: 100,
+          tweet_fields: "created_at,text",
+        },
+      }]
+    },
+    extract(raw) {
+      const items = arr(get(raw, "TWITTER_FULL_ARCHIVE_SEARCH", "data", "data"))
+      return items.map((t) => ({
+        timestamp: (get(t, "created_at") ?? "") as string,
+        label: ((get(t, "text") as string) ?? "Tweet").slice(0, 120),
+        url: `https://x.com/${USER_HANDLES.twitter}/status/${(get(t, "id") as string) ?? ""}`,
+        raw: t,
+      })).filter((x) => x.timestamp)
+    },
+  },
+
+  {
+    // Requires an Instagram Business or Creator account linked via Facebook Page.
+    // Personal accounts are not accessible via the Instagram Graph API.
+    toolkit: "instagram",
+    displayName: "Instagram",
+    fetch(dateISO) {
+      const { start, end } = dayBoundsSec(dateISO)
+      return [{
+        slug: "INSTAGRAM_GET_IG_USER_MEDIA",
+        params: {
+          ig_user_id: "me",
+          since: start,
+          until: end,
+          fields: "id,caption,media_type,permalink,timestamp",
+          limit: 50,
+        },
+      }]
+    },
+    extract(raw) {
+      const items = arr(get(raw, "INSTAGRAM_GET_IG_USER_MEDIA", "data", "data"))
+      return items.map((m) => {
+        const type = (get(m, "media_type") as string ?? "POST")
+        const caption = ((get(m, "caption") as string) ?? "").slice(0, 80)
+        const typeLabel = type === "VIDEO" ? "Reel/Video" : "Post"
+        return {
+          timestamp: (get(m, "timestamp") ?? "") as string,
+          label: `${typeLabel}${caption ? `: ${caption}` : ""}`,
+          url: (get(m, "permalink") ?? get(m, "display_url") ?? "") as string,
+          raw: m,
+        }
+      }).filter((x) => x.timestamp)
     },
   },
 ]
